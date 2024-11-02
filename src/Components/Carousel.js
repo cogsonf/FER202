@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import slide1 from '../assets/images/1.jpg';
@@ -13,13 +14,19 @@ import trailer4 from '../assets/trailers/trailer4.mp4';
 const images = [slide1, slide2, slide3, slide4];
 const trailers = [trailer1, trailer2, trailer3, trailer4];
 
+const concerts = [
+  { id: 1, name: "Live in Concert" },
+  { id: 2, name: "Rock Night" },
+  { id: 3, name: "Duy Night" }
+];
+
 const Carousel = () => {
     const extendedImages = [images[images.length - 1], ...images, images[0]];
     const extendedTrailers = [trailers[trailers.length - 1], ...trailers, trailers[0]];
 
     const [currentIndex, setCurrentIndex] = useState(1);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const [hoveredIndex, setHoveredIndex] = useState(null); // Lưu trạng thái slide đang được hover
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const handleNext = () => {
         if (!isTransitioning) {
@@ -66,14 +73,13 @@ const Carousel = () => {
         overflow: 'hidden',
         position: 'relative',
         margin: '0 auto',
-        borderRadius: '33px', // Thêm thuộc tính này để bo tròn các slide
+        borderRadius: '33px',
     };
 
     const slideContainerStyle = {
         display: 'flex',
         transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
         transform: `translateX(calc(-${currentIndex * 50}% - ${currentIndex * 10}px))`,
-        
     };
 
     const slideStyle = {
@@ -85,8 +91,8 @@ const Carousel = () => {
         overflow: 'hidden',
         position: 'relative',
         marginRight: '10px',
-        borderRadius: '10px', // Thêm thuộc tính này để bo tròn các slide
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', 
+        borderRadius: '10px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     };
 
     const imgStyle = {
@@ -102,16 +108,15 @@ const Carousel = () => {
     };
 
     const overlayStyle = {
-    position: 'absolute',
-    bottom: '50px', // Đưa toàn bộ overlay lên trên một chút
-    left: '20px',
-    color: 'white',
-    backgroundColor: 'transparent',
-    padding: '20px',
-    borderRadius: '8px',
-    width: 'calc(100% - 40px)',
-};
-
+        position: 'absolute',
+        bottom: '50px',
+        left: '20px',
+        color: 'white',
+        backgroundColor: 'transparent',
+        padding: '20px',
+        borderRadius: '8px',
+        width: 'calc(100% - 40px)',
+    };
 
     const titleStyle = {
         fontSize: '1.5rem',
@@ -134,7 +139,7 @@ const Carousel = () => {
         border: 'none',
         borderRadius: '5px',
         cursor: 'pointer',
-        marginTop: '10px', // Thêm khoảng cách phía trên nút nếu cần
+        marginTop: '10px',
     };
     
     return (
@@ -164,7 +169,16 @@ const Carousel = () => {
                                 <span>Giá từ: 750.000đ</span>
                                 <span>22 tháng 11, 2024</span>
                             </div>
-                            <button style={buttonStyle}>Xem chi tiết</button>
+                            <ul>
+                                {concerts.map((concert) => (
+                                    <li key={concert.id}>
+                                        {concert.name}
+                                        <Link to={`/concert/${concert.id}`}>
+                                            <button style={buttonStyle}>Xem chi tiết</button>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 ))}

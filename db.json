@@ -1,0 +1,28 @@
+{
+    "concerts": [
+      {
+        "id": 1,
+        "name": "Live in Concert",
+        "description": "An amazing live concert!",
+        "date": "2024-12-01",
+        "venue": "Stadium A",
+        "price": "$100"
+      },
+      {
+        "id": 2,
+        "name": "Rock Night",
+        "description": "A night full of rock music.",
+        "date": "2025-01-15",
+        "venue": "Arena B",
+        "price": "$120"
+      },
+      {
+        "id": 3,
+        "name": "Duy Night",
+        "description": "A night full of rock music.",
+        "date": "2025-01-15",
+        "venue": "Arena B",
+        "price": "$120"
+      }
+    ]
+  }
