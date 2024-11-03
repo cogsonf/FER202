@@ -1,8 +1,19 @@
 // src/components/Header.js
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate từ react-router-dom
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        navigate('/'); // Điều hướng đến trang login (trang chính của bạn)
+    };
+
+    const handleRegisterClick = () => {
+        navigate('/register'); // Điều hướng đến trang register
+    };
+
     return (
         <>
             <style>
@@ -49,11 +60,14 @@ const Header = () => {
                     .navbar-custom .auth-links {
                         color: white;
                     }
-                    .navbar-custom .auth-links a {
+                    .navbar-custom .auth-links button {
+                        background: none;
+                        border: none;
                         color: white;
                         margin-left: 10px;
+                        cursor: pointer;
                     }
-                    .navbar-custom .auth-links a:hover {
+                    .navbar-custom .auth-links button:hover {
                         color: #ddd;
                     }
                     .navbar-secondary {
@@ -70,7 +84,7 @@ const Header = () => {
                 `}
             </style>
             <nav className="navbar navbar-expand-lg navbar-custom">
-                <a className="navbar-brand" href="#">ConTic</a>
+                <a className="navbar-brand" href="/" onClick={() => navigate('/main')}>ConTic</a>
                 <div className="collapse navbar-collapse">
                     <form className="d-flex mx-auto search-bar">
                         <input className="form-control me-2" type="search" placeholder="Bạn tìm gì hôm nay?" aria-label="Search" />
@@ -78,8 +92,10 @@ const Header = () => {
                     </form>
                     <button className="btn btn-outline-light btn-create-event" type="button">Tạo sự kiện</button>
                     <button className="btn btn-outline-light btn-tickets" type="button"><i className="fas fa-ticket-alt"></i> Vé đã mua</button>
-                    <div className="auth-links">
-                        <a href="#">Đăng nhập</a> | <a href="#">Đăng ký</a>
+                    <div className="auth-links ms-auto">
+                    <button onClick={handleLoginClick} className="auth-link" type="button">Đăng nhập</button>
+<button onClick={handleRegisterClick} className="auth-link" type="button">Đăng ký</button>
+
                     </div>
                 </div>
             </nav>
@@ -87,16 +103,16 @@ const Header = () => {
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Nhạc sống</a>
+                            <a className="nav-link" href="/" onClick={(e) => e.preventDefault()}>Nhạc sống</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Sân khấu & Nghệ thuật</a>
+                            <a className="nav-link" href="/" onClick={(e) => e.preventDefault()}>Sân khấu & Nghệ thuật</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Thể Thao</a>
+                            <a className="nav-link" href="/" onClick={(e) => e.preventDefault()}>Thể Thao</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Khác</a>
+                            <a className="nav-link" href="/" onClick={(e) => e.preventDefault()}>Khác</a>
                         </li>
                     </ul>
                 </div>

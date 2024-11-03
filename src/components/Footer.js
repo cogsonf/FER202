@@ -1,5 +1,5 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 
 const Footer = () => {
     return (
@@ -34,11 +34,11 @@ const Footer = () => {
                     <div className="col-md-4">
                         <h5 style={headerStyle}>Dành cho Khách hàng</h5>
                         <p>
-                            <a href="#" style={linkStyle}>Điều khoản sử dụng cho khách hàng</a>
+                            <a href="/" style={linkStyle}>Điều khoản sử dụng cho khách hàng</a>
                         </p>
                         <h5 style={headerStyle}>Dành cho Ban Tổ chức</h5>
                         <p>
-                            <a href="#" style={linkStyle}>Điều khoản sử dụng cho ban tổ chức</a>
+                            <a href="/" style={linkStyle}>Điều khoản sử dụng cho ban tổ chức</a>
                         </p>
                         <h5 style={headerStyle}>Đăng ký nhận email về các sự kiện hot nhất</h5>
                         <div className="email-input" style={emailInputStyle}>
@@ -52,25 +52,25 @@ const Footer = () => {
                     <div className="col-md-4">
                         <h5 style={headerStyle}>Về công ty chúng tôi</h5>
                         <p>
-                            <a href="#" style={linkStyle}>Quy chế hoạt động</a>
+                            <a href="/" style={linkStyle}>Quy chế hoạt động</a>
                         </p>
                         <p>
-                            <a href="#" style={linkStyle}>Chính sách bảo mật thông tin</a>
+                            <a href="/" style={linkStyle}>Chính sách bảo mật thông tin</a>
                         </p>
                         <p>
-                            <a href="#" style={linkStyle}>Cơ chế giải quyết tranh chấp/ khiếu nại</a>
+                            <a href="/" style={linkStyle}>Cơ chế giải quyết tranh chấp/ khiếu nại</a>
                         </p>
                         <p>
-                            <a href="#" style={linkStyle}>Chính sách bảo mật thanh toán</a>
+                            <a href="/" style={linkStyle}>Chính sách bảo mật thanh toán</a>
                         </p>
                         <p>
-                            <a href="#" style={linkStyle}>Chính sách đổi trả và kiểm hàng</a>
+                            <a href="/" style={linkStyle}>Chính sách đổi trả và kiểm hàng</a>
                         </p>
                         <p>
-                            <a href="#" style={linkStyle}>Điều kiện vận chuyển và giao nhận</a>
+                            <a href="/" style={linkStyle}>Điều kiện vận chuyển và giao nhận</a>
                         </p>
                         <p>
-                            <a href="#" style={linkStyle}>Phương thức thanh toán</a>
+                            <a href="/" style={linkStyle}>Phương thức thanh toán</a>
                         </p>
                     </div>
                 </div>

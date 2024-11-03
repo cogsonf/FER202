@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/contact.css';
+import '../App.css';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -17,12 +17,12 @@ const Contact = () => {
 
     return (
         <>
-        <Header/>
+      <Header/>
         <div>
         
             {/* Banner riêng biệt */}
             <div className="contact-banner-container">
-                <img src="./images/ban.png" alt="Contact Us Banner" className="contact-banner" />
+                <img src="../assets/images/ban.png" alt="Contact Us Banner" className="contact-banner" />
             </div>
 
             {/* Container hiển thị thông tin và form */}
