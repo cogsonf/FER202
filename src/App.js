@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import ConcertCrud from './Components/ConcertCrud';
 import ConcertDetail from './Components/ConcertDetail';
 import ConcertList from './Components/ConcertList';
 import ForgotPassword from './Components/ForgotPassword';
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/main" element={<MainPage />} /> {/* Trang hiển thị các thành phần giao diện */}
+        <Route path="/concertscrud" element={<ConcertCrud />} />
         <Route path="/concerts" element={<ConcertList />} />
         <Route path="/concerts/:id" element={<ConcertDetail />} /> {/* Route cho chi tiết concert */}
       </Routes>

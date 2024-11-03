@@ -11,12 +11,15 @@ const Login = () => {
   const handleForgotPasswordRedirect = () => {
     navigate('/forgot-password');
   };
-  const handleLogin = () => {
-    navigate('/main'); // Điều hướng đến trang chứa các thành phần giao diện
+
+  const handleLoginOwner = () => {
+    navigate('/concertscrud'); // Điều hướng đến trang CRUD của concert
   };
-  // const handleLogin = () => {
-  //   navigate('/concerts'); // Điều hướng đến trang chứa các thành phần giao diện
-  // };
+
+  const handleLogin = () => {
+    navigate('/main'); // Điều hướng đến trang chính
+  };
+
   return (
     <div className="background bg-[#e8c1a0] flex items-center justify-center min-h-screen">
       <div className="bg-[#0a043c] text-white rounded-lg p-8 w-80">
@@ -58,14 +61,23 @@ const Login = () => {
             </button>
           </div>
 
-          {/* Login Button */}
-          <button
-            type="button"
-            onClick={handleLogin}
-            className="w-full bg-[#b392ac] text-white py-2 rounded hover:bg-[#9a798f] transition duration-300"
-          >
-            Login
-          </button>
+          {/* Login Buttons */}
+          <div className="space-y-2"> {/* Thêm lớp space-y-2 để tạo khoảng cách giữa các nút */}
+            <button
+              type="button"
+              onClick={handleLogin}
+              className="w-full bg-[#b392ac] text-white py-2 rounded hover:bg-[#9a798f] transition duration-300"
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              onClick={handleLoginOwner}
+              className="w-full bg-[#b392ac] text-white py-2 rounded hover:bg-[#9a798f] transition duration-300"
+            >
+              Login Owner
+            </button>
+          </div>
         </form>
 
         {/* Register Button */}

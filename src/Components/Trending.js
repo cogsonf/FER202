@@ -1,33 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import React, { useState } from 'react';
-import slide1 from '../assets/images/1.jpg';
-import slide2 from '../assets/images/2.png';
-import slide3 from '../assets/images/3.jpg';
-import slide4 from '../assets/images/4.jpg';
-import slide5 from '../assets/images/5.jpg';
-import slide6 from '../assets/images/6.jpg';
-import slide7 from '../assets/images/7.jpg';
-import slide8 from '../assets/images/8.jpg';
-
-const images = [
-  { src: slide1, title: 'Chương trình hoà nhạc Love Unfolds - The CDs', price: 'Từ 600.000đ', date: '02 tháng 11, 2024' },
-  { src: slide2, title: '[Acrylic Workshop] Workshop về tranh cá nhân X Chill tháng 10 - Zest Art', price: 'Từ 440.000đ', date: '29 tháng 10, 2024' },
-  { src: slide3, title: 'LULULOA SHOW VĂN MAI HƯƠNG | CẦU VỒNG LẤP LÁNH', price: 'Từ 450.000đ', date: '16 tháng 11, 2024' },
-  { src: slide4, title: 'Sân khấu Thiên Long - Cao Quân Bảo Đại Chiến Dư Hồng', price: 'Từ 300.000đ', date: '21 tháng 12, 2024' },
-  { src: slide5, title: 'Concert Autumn Vibes', price: 'Từ 550.000đ', date: '05 tháng 11, 2024' },
-  { src: slide6, title: 'Digital Art Workshop - New Horizons', price: 'Từ 400.000đ', date: '10 tháng 11, 2024' },
-  { src: slide7, title: 'Dance Performance - Stardust Dreams', price: 'Từ 480.000đ', date: '20 tháng 11, 2024' },
-  { src: slide8, title: 'Stage Play - Timeless Journey', price: 'Từ 520.000đ', date: '25 tháng 12, 2024' },
-];
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Trending = () => {
+  const [concerts, setConcerts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleSlides = 4;
-  const totalSlides = images.length;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch dữ liệu từ db.json và sắp xếp theo id giảm dần, giới hạn 20 concert
+    fetch('http://localhost:5000/Concerts')
+      .then((response) => response.json())
+      .then((data) => {
+        const sortedConcerts = data
+          .sort((a, b) => b.id - a.id) // Sắp xếp giảm dần theo id
+          .slice(0, 20); // Giới hạn số lượng concert là 20
+        setConcerts(sortedConcerts);
+      })
+      .catch((error) => console.error('Error fetching concerts:', error));
+  }, []);
 
   const handleNext = () => {
-    if (currentIndex < totalSlides - visibleSlides) {
+    if (currentIndex < concerts.length - visibleSlides) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
       setCurrentIndex(0);
@@ -38,8 +34,12 @@ const Trending = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevIndex) => prevIndex - 1);
     } else {
-      setCurrentIndex(totalSlides - visibleSlides);
+      setCurrentIndex(concerts.length - visibleSlides);
     }
+  };
+
+  const handleImageClick = (id) => {
+    navigate(`/concerts/${id}`);
   };
 
   const carouselContainerStyle = {
@@ -47,8 +47,8 @@ const Trending = () => {
     overflow: 'hidden',
     position: 'relative',
     margin: '0 auto',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)', // Thêm shadow box
-    borderRadius: '10px', // Bo tròn các góc
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
+    borderRadius: '10px',
   };
 
   const slideContainerStyle = {
@@ -71,6 +71,7 @@ const Trending = () => {
     height: '250px',
     objectFit: 'cover',
     marginBottom: '10px',
+    cursor: 'pointer',
   };
 
   const infoBoxStyle = {
@@ -98,14 +99,19 @@ const Trending = () => {
       <h2 style={{ marginBottom: '10px' }}>Sự kiện xu hướng</h2>
       <div style={carouselContainerStyle}>
         <div style={slideContainerStyle}>
-          {images.map((image, index) => (
-            <div key={index} style={slideStyle}>
-              <img src={image.src} style={imgStyle} alt={`Slide ${index + 1}`} />
+          {concerts.map((concert, index) => (
+            <div key={concert.id} style={slideStyle}>
+              <img
+                src={concert.image}
+                style={imgStyle}
+                alt={concert.Name}
+                onClick={() => handleImageClick(concert.id)}
+              />
               <div style={infoBoxStyle}>
-                <h5>{image.title}</h5>
+                <h5>{concert.Name}</h5>
                 <div style={priceDateContainerStyle}>
-                  <p style={{ margin: '0', color: 'green', fontSize: '20px' }}>{image.price}</p>
-                  <p style={{ margin: '0', fontSize: '20px' }}>{image.date}</p>
+                <p style={{ margin: '0', color: 'green', fontSize: '20px' }}>Từ {concert.price.toLocaleString()} VND</p>
+                  <p style={{ margin: '0', fontSize: '20px' }}>{concert.date}</p>
                 </div>
               </div>
             </div>
